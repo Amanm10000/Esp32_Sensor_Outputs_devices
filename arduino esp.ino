@@ -131,16 +131,17 @@ Serial.println(frtdb.errorReason());
 
 float tpre = dht.readTemperature();
 float dispre = distanceSensor.measureDistanceCm();
-if(tpre != t){
+Serial.println(t);
+if(!isnan(tpre) && tpre != t){
   t = tpre;
   dht_sensor_func(t);
 }
-delay(100);
+delay(90);
 if(dispre != distance){
   distance = dispre;
   ultrasonic_func(distance);
 }
-delay(100);
+delay(90);
 counts++;
 json.set("DHT_Value/count", counts);
 json.set("Ultra_value/count", counts);
